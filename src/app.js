@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var fetch = require('node-fetch');
 
 //设置跨域访问
-app.all('*', function (req, res, next) {
+app.all('*', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
@@ -13,8 +13,7 @@ app.all('*', function (req, res, next) {
   next();
 });
 
-
-app.get('/', function (request, response) {
+app.get('/', function(request, response) {
   // 输出 JSON 格式
   data = {
     'first_name': 'roby',
@@ -28,7 +27,7 @@ app.get('/', function (request, response) {
 // 创建 application/x-www-form-urlencoded 编码解析
 var urlencodedParser = bodyParser.json({extended: false})
 
-app.post('/post', urlencodedParser, function (request, response) {
+app.post('/post', urlencodedParser, function(request, response) {
   // 输出 JSON 格式
   data = {
     'name': request.body.name,
@@ -39,7 +38,7 @@ app.post('/post', urlencodedParser, function (request, response) {
   response.json(data);
 });
 
-app.post('/send_message', urlencodedParser, function (request, response) {
+app.post('/send_message', urlencodedParser, function(request, response) {
   // 输出 JSON 格式
   data = {
     'mobiles': request.body.phone,
@@ -53,23 +52,23 @@ app.post('/send_message', urlencodedParser, function (request, response) {
   var FormData = require('form-data');
   var form = new FormData();
   fetch(url, {
-    method: 'POST', body: {
+    method: 'POST',
+    body: {
       "type": api_type,
       "mobiles": data.mobiles,
       "message": data.message,
       "groupid": groupid
-    }})
-    .then(function (res) {
-      return res.json();
-    }).then(function (json) {
+    }
+  }).then(function(res) {
+    return res.json();
+  }).then(function(json) {
     console.log(json);
   });
 
   response.json(data);
 });
 
-
-app.get('/roby', function (request, response) {
+app.get('/roby', function(request, response) {
   var hostName = request.hostname;
   console.log("hostName: %s", hostName);
   response.send("I got you!");
@@ -80,21 +79,21 @@ var questions = [
     data: 213,
     num: 444,
     age: 12
-  },
-  {
+  }, {
     data: 456,
     num: 678,
     age: 13
-  }];
+  }
+];
 
 //写个接口123
-app.get('/123', function (req, res) {
+app.get('/123', function(req, res) {
   res.status(200),
-    res.json(questions)
+  res.json(questions)
 });
 
 //配置服务端口
-var server = app.listen(3000, function () {
+var server = app.listen(3000, function() {
 
   var host = server.address().address;
 
