@@ -1,10 +1,10 @@
-var PORT = 3000;
+var PORT = 10086;
 
 var http = require('http');
-var url=require('url');
-var fs=require('fs');
-var mine=require('./mine').types;
-var path=require('path');
+var url = require('url');
+var fs = require('fs');
+var mine = require('./mine').types;
+var path = require('path');
 
 var server = http.createServer(function (request, response) {
   var pathname = url.parse(request.url).pathname;
@@ -40,4 +40,4 @@ var server = http.createServer(function (request, response) {
   });
 });
 server.listen(PORT);
-console.log("Server runing at port: " + PORT + ".");
+console.log("启动服务: 0.0.0.0:" + PORT);
